@@ -19,5 +19,9 @@ public class Main {
             for(String station : dataProcessor.getStationenMitAufzug()){
                 System.out.println(station);
             }
+
+            App dialog = new App();
+            dialog.pack();
+            dialog.setVisible(true);
         }
 }
