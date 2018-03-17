@@ -1,6 +1,7 @@
 import org.apache.commons.io.FileUtils;
-
-import static javafx.scene.input.DataFormat.URL;
+import java.io.File;
+import java.io.IOException;
+import java.net.*;
 
 /**
  * Created by davideder on 17.03.18.
@@ -9,8 +10,25 @@ import static javafx.scene.input.DataFormat.URL;
 
 public class Downloader {
 
-    public void download(String url){
-        FileUtils.copyURLToFile(URL, File);
+    public static final String RESOURCESPATH = "resources";
+
+    public void download(String link, String fileName){
+        File file = new File(RESOURCESPATH+"/"+fileName);
+        URL url = null;
+
+        try {
+            url = new URL(link);
+        } catch (MalformedURLException e) {
+            e.printStackTrace(System.err);
+        }
+
+        if(url != null) {
+            try {
+                FileUtils.copyURLToFile(url, file);
+            } catch (IOException e){
+                e.printStackTrace(System.err);
+            }
+        }
 
     }
 }
