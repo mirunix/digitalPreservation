@@ -1,3 +1,5 @@
+package com.controller;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -21,7 +23,7 @@ public class DataProcessor {
 
 
         //find all files in the resources directory
-        File folder = new File(s + "/resources");
+        File folder = new File(s + "/src/main/res");
         File[] listOfFiles = folder.listFiles();
         String cvsSplitBy = ",";
 

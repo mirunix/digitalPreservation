@@ -1,3 +1,5 @@
+package com.controller;
+
 import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +12,7 @@ import java.net.*;
 
 public class Downloader {
 
-    public static final String RESOURCESPATH = "resources";
+    public static final String RESOURCESPATH = "src/main/res";
 
     public void download(String link, String fileName){
         File file = new File(RESOURCESPATH+"/"+fileName);

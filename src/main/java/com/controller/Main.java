@@ -1,11 +1,16 @@
-import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+package com.controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
 public class Main {
+
+        @RequestMapping("/")
+        public String homepage(){
+            return "homepage";
+        }
+
         public static void main(String[] args) {
 
             Downloader downloader = new Downloader();
@@ -19,9 +24,5 @@ public class Main {
             for(String station : dataProcessor.getStationenMitAufzug()){
                 System.out.println(station);
             }
-
-            App dialog = new App();
-            dialog.pack();
-            dialog.setVisible(true);
         }
 }
