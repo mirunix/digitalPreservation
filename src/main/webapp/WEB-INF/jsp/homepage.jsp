@@ -15,8 +15,7 @@
 <h2>Digital preservation exercise</h2>
 <div class="home-section">
     <ul class="menu-list">
-        <li><a href="#/gallery">One link: Photo Gallery</a></li>
-        <li><a href="#/contactus">Another link: Contact</a></li>
+        <li><a href="#/chart">Click to view the chart</a></li>
     </ul>
 </div>
 <div ng-view></div>
@@ -24,7 +23,8 @@
 <script src="./webjars/angularjs/1.4.8/angular-resource.js"></script>
 <script src="./webjars/angularjs/1.4.8/angular-route.js"></script>
 <script src="../resources/static/js/app.js"></script>
-<script src="../resources/static/js/controller.js"></script>
+<script src="../resources/static/js/chartController.js"></script>
+<script src="../resources/static/js/plotly-latest.min.js"></script>
 <link rel="stylesheet" href="./webjars/bootstrap/3.3.6/css/bootstrap.css">
 </body>
 </html>
