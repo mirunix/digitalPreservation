@@ -6,6 +6,6 @@ app.config(function($routeProvider){
             controller: 'chartController'
         })
         .otherwise(
-            { redirectTo: '/'}
+            { redirectTo: '/chart'}
         );
 });

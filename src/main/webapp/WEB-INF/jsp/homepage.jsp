@@ -13,11 +13,6 @@
 </head>
 <body>
 <h2>Digital preservation exercise</h2>
-<div class="home-section">
-    <ul class="menu-list">
-        <li><a href="#/chart">Click to view the chart</a></li>
-    </ul>
-</div>
 <div ng-view></div>
 <script src="./webjars/angularjs/1.4.8/angular.js"></script>
 <script src="./webjars/angularjs/1.4.8/angular-resource.js"></script>
