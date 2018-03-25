@@ -1,8 +1,8 @@
 package com.controller;
 
 import org.apache.commons.io.FileUtils;
-import java.io.File;
-import java.io.IOException;
+
+import java.io.*;
 import java.net.*;
 
 /**
@@ -12,10 +12,10 @@ import java.net.*;
 
 public class Downloader {
 
-    public static final String RESOURCESPATH = "src/main/res";
+    public static final String RESOURCESPATH = "src/main/res/";
 
     public void download(String link, String fileName){
-        File file = new File(RESOURCESPATH+"/"+fileName);
+        File file = new File(RESOURCESPATH+fileName);
         URL url = null;
 
         try {
@@ -31,6 +31,8 @@ public class Downloader {
                 e.printStackTrace(System.err);
             }
         }
+
+        //TODO: download zip file
 
     }
 }

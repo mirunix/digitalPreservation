@@ -7,16 +7,14 @@ public class Station {
     private String name;
     private BigDecimal longitude;
     private BigDecimal latitude;
-    private Boolean hasElevator;
+    private String city;
 
-
-
-    public Boolean getHasElevator() {
-        return hasElevator;
+    public String getCity() {
+        return city;
     }
 
-    public void setHasElevator(Boolean hasElevator) {
-        this.hasElevator = hasElevator;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getName() {
@@ -63,7 +61,7 @@ public class Station {
                 "name='" + name + '\'' +
                 ", longitude=" + longitude +
                 ", latitude=" + latitude +
-                ", hasElevator=" + hasElevator +
+                ", city=" + city +
                 '}';
     }
 }
