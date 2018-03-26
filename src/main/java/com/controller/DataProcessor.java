@@ -12,7 +12,8 @@ public class DataProcessor {
     private List stationsVienna = new ArrayList<>();
     private List stationsBudapest = new ArrayList<>();
 
-    public static final String RESOURCESPATH = "/src/main/res/";
+    private static final String RESOURCESPATH = "/src/main/res/";
+    private String splitBy = ",";
 
 
     public void processData() {
@@ -20,10 +21,8 @@ public class DataProcessor {
         Path currentRelativePath = Paths.get("");
         String s = currentRelativePath.toAbsolutePath().toString();
 
-        String splitBy = ",";
-
         String line;
-        File stationsViennaFileVienna = new File(s + RESOURCESPATH + "UBAHNHALTOGD.csv");
+        File fileVienna = new File(s + RESOURCESPATH + "UBAHNHALTOGD.csv");
         File zipFile = new File(s + RESOURCESPATH + "budapest_gtfs.zip");
         try {
             ZipFile zip = new ZipFile(zipFile);
@@ -33,10 +32,10 @@ public class DataProcessor {
             e.printStackTrace();
         }
 
-        File stationsViennaFileBudapest = new File(s + RESOURCESPATH + "stops.txt");
+        File fileBudapest = new File(s + RESOURCESPATH + "stops.txt");
 
         //vienna
-        try (BufferedReader br = new BufferedReader(new FileReader(stationsViennaFileVienna))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileVienna))) {
 
             while ((line = br.readLine()) != null) {
                 String[] lineInCsv = line.split(splitBy);
@@ -59,10 +58,9 @@ public class DataProcessor {
         }
 
         //budapest
-        try (BufferedReader br = new BufferedReader(new FileReader(stationsViennaFileBudapest))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileBudapest))) {
 
             while ((line = br.readLine()) != null) {
-                System.out.println(line);
 
                 String[] lineInTxt = line.split(splitBy);
 

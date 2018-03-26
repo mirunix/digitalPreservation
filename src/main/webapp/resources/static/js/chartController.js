@@ -1,23 +1,39 @@
 app.controller('chartController', function($scope, $http) {
-    $scope.headingTitle = "Chart";
     var stations;
 
 
-    var layout = {
+    var layoutVienna = {
 
         xaxis: {
             title: 'Longitude'
         },
 
         yaxis: {
-            title: 'Latitude',
+            title: 'Latitude'
 
         },
 
         title:'Metro Stations Vienna',
 
-        width: 500,
-        height: 500
+        width: 600,
+        height: 600
+    };
+
+    var layoutBudapest = {
+
+        xaxis: {
+            title: 'Longitude'
+        },
+
+        yaxis: {
+            title: 'Latitude'
+
+        },
+
+        title:'Metro Stations Budapest',
+
+        width: 600,
+        height: 600
     };
 
 
@@ -30,18 +46,20 @@ app.controller('chartController', function($scope, $http) {
             x: [],
             y: [],
             mode: 'markers',
-            type: 'scatter'
+            type: 'scatter',
+            text: []
         };
 
 
         for (var i = 0; i < stations.length; i++) {
             trace1.x.push(stations[i].longitude);
             trace1.y.push(stations[i].latitude);
+            trace1.text.push(stations[i].name);
         }
 
         var data = [ trace1 ];
 
-        Plotly.newPlot('viennaChart', data, layout);
+        Plotly.newPlot('viennaChart', data, layoutVienna);
 
     });
 
@@ -53,19 +71,20 @@ app.controller('chartController', function($scope, $http) {
             x: [],
             y: [],
             mode: 'markers',
-            type: 'scatter'
+            type: 'scatter',
+            text: []
         };
 
 
         for (var i = 0; i < stations.length; i++) {
             trace1.x.push(stations[i].longitude);
             trace1.y.push(stations[i].latitude);
+            trace1.text.push(stations[i].name);
         }
 
         var data = [ trace1 ];
 
-        layout.title = 'Metro Stations Budapest';
-        Plotly.newPlot('budapestChart', data, layout);
+        Plotly.newPlot('budapestChart', data, layoutBudapest);
 
     });
 
