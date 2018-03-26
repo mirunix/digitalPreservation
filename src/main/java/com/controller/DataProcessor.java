@@ -62,7 +62,10 @@ public class DataProcessor {
         try (BufferedReader br = new BufferedReader(new FileReader(stationsViennaFileBudapest))) {
 
             while ((line = br.readLine()) != null) {
+                System.out.println(line);
+
                 String[] lineInTxt = line.split(splitBy);
+
                 if(lineInTxt[1].endsWith("M") || lineInTxt[1].contains("M+")){
                         Station station = new Station();
                         station.setName(lineInTxt[1]);

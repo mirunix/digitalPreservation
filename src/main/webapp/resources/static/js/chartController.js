@@ -1,61 +1,75 @@
 app.controller('chartController', function($scope, $http) {
     $scope.headingTitle = "Chart";
+    var stations;
 
-    var trace1 = {
-        x: [1, 2, 3, 4, 5],
-        y: [1, 6, 3, 6, 1],
-        mode: 'markers+text',
-        type: 'scatter',
-        name: 'Team A',
-        text: ['A-1', 'A-2', 'A-3', 'A-4', 'A-5'],
-        textposition: 'top center',
-        textfont: {
-            family:  'Raleway, sans-serif'
-        },
-        marker: { size: 12 }
-    };
-
-    var trace2 = {
-        x: [1.5, 2.5, 3.5, 4.5, 5.5],
-        y: [4, 1, 7, 1, 4],
-        mode: 'markers+text',
-        type: 'scatter',
-        name: 'Team B',
-        text: ['B-a', 'B-b', 'B-c', 'B-d', 'B-e'],
-        textfont : {
-            family:'Times New Roman'
-        },
-        textposition: 'bottom center',
-        marker: { size: 12 }
-    };
-
-    var data = [ trace1, trace2 ];
 
     var layout = {
+
         xaxis: {
-            range: [ 0.75, 5.25 ]
+            title: 'Longitude'
         },
+
         yaxis: {
-            range: [0, 8]
+            title: 'Latitude',
+
         },
-        legend: {
-            y: 0.5,
-            yref: 'paper',
-            font: {
-                family: 'Arial, sans-serif',
-                size: 20,
-                color: 'grey',
-            }
-        },
-        title:'Data Labels on the Plot'
+
+        title:'Metro Stations Vienna',
+
+        width: 500,
+        height: 500
     };
 
-    Plotly.newPlot('firstChart', data, layout);
 
-    //example how to get the data
+
     $http.get('http://localhost:8080/getStationsVienna').
     then(function(response) {
-        $scope.stationsVienna = response.data;
+        stations = response.data;
+
+        var trace1 = {
+            x: [],
+            y: [],
+            mode: 'markers',
+            type: 'scatter'
+        };
+
+
+        for (var i = 0; i < stations.length; i++) {
+            trace1.x.push(stations[i].longitude);
+            trace1.y.push(stations[i].latitude);
+        }
+
+        var data = [ trace1 ];
+
+        Plotly.newPlot('viennaChart', data, layout);
+
     });
+
+    $http.get('http://localhost:8080/getStationsBudapest').
+    then(function(response) {
+        stations = response.data;
+
+        var trace1 = {
+            x: [],
+            y: [],
+            mode: 'markers',
+            type: 'scatter'
+        };
+
+
+        for (var i = 0; i < stations.length; i++) {
+            trace1.x.push(stations[i].longitude);
+            trace1.y.push(stations[i].latitude);
+        }
+
+        var data = [ trace1 ];
+
+        layout.title = 'Metro Stations Budapest';
+        Plotly.newPlot('budapestChart', data, layout);
+
+    });
+
+
+
 
 });

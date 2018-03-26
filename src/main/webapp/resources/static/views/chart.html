@@ -1,21 +1,6 @@
 <div class="section">
     <h3>{{headingTitle}}</h3>
-    <p>
-        Here's a simple Plotly plot -
-        <a href="https://bit.ly/1Or9igj">plotly.js documentation</a>
-    </p>
+    <div id="viennaChart" class="plot"></div>
+    <div id="budapestChart" class="plot"></div>
 
-    <!-- Plots go in blank <div> elements.
-        You can size them in the plot layout,
-        or give the div a size as shown here.
-    -->
-    <div id="firstChart"></div>
-
-
-    <div ng-controller="chartController">
-        <div ng-repeat="station in stationsVienna">
-            <p>The name is {{station.name}}</p>
-            <p>The coordinates: {{station.latitude}}, {{station.longitude}}</p>
-        </div>
-    </div>
 </div>
