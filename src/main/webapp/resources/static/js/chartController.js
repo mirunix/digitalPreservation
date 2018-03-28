@@ -36,28 +36,65 @@ app.controller('chartController', function($scope, $http) {
         height: 600
     };
 
+    var layoutViennaBudapest = {
 
+        xaxis: {
+            title: 'Longitude'
+        },
+
+        yaxis: {
+            title: 'Latitude'
+
+        },
+
+        title:'Metro Stations Vienna Budapest Combined',
+
+        width: 900,
+        height: 900
+    };
+
+    var traceVienna = {
+        x: [],
+        y: [],
+        mode: 'markers',
+        type: 'scatter',
+        text: [],
+        name: 'Vienna'
+    };
+
+
+    var traceBudapest = {
+        x: [],
+        y: [],
+        mode: 'markers',
+        type: 'scatter',
+        text: [],
+        name: 'Budapest'
+    };
+
+    var traceBudapestOffset = {
+        x: [],
+        y: [],
+        mode: 'markers',
+        type: 'scatter',
+        text: [],
+        name: 'Budapest'
+    };
 
     $http.get('http://localhost:8080/getStationsVienna').
     then(function(response) {
         stations = response.data;
 
-        var trace1 = {
-            x: [],
-            y: [],
-            mode: 'markers',
-            type: 'scatter',
-            text: []
-        };
+
 
 
         for (var i = 0; i < stations.length; i++) {
-            trace1.x.push(stations[i].longitude);
-            trace1.y.push(stations[i].latitude);
-            trace1.text.push(stations[i].name);
+            traceVienna.x.push(stations[i].longitude);
+            traceVienna.y.push(stations[i].latitude);
+            traceVienna.text.push(stations[i].name);
         }
 
-        var data = [ trace1 ];
+        var data = [ traceVienna ];
 
         Plotly.newPlot('viennaChart', data, layoutVienna);
 
@@ -67,24 +104,23 @@ app.controller('chartController', function($scope, $http) {
     then(function(response) {
         stations = response.data;
 
-        var trace1 = {
-            x: [],
-            y: [],
-            mode: 'markers',
-            type: 'scatter',
-            text: []
-        };
-
 
         for (var i = 0; i < stations.length; i++) {
-            trace1.x.push(stations[i].longitude);
-            trace1.y.push(stations[i].latitude);
-            trace1.text.push(stations[i].name);
+            traceBudapest.x.push(stations[i].longitude);
+            traceBudapest.y.push(stations[i].latitude);
+            traceBudapest.text.push(stations[i].name);
         }
 
-        var data = [ trace1 ];
+        for (var i = 0; i < stations.length; i++) {
+            traceBudapestOffset.x.push(stations[i].longitude-2.7);
+            traceBudapestOffset.y.push(stations[i].latitude+0.7);
+            traceBudapestOffset.text.push(stations[i].name);
+        }
+
+        var data = [ traceBudapest ];
 
         Plotly.newPlot('budapestChart', data, layoutBudapest);
+        Plotly.newPlot('viennaBudapestOffsetChart', [ traceVienna, traceBudapestOffset ], layoutViennaBudapest);
 
     });
 
